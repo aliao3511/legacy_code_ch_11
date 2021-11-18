@@ -1,7 +1,5 @@
 import importlib
 
-from ..config import Config
-
 class AbstractBase:
 
     REQUIRED_ATTRS = ("PLATFORM_SHORT_NAME",)
@@ -17,15 +15,10 @@ class AbstractBase:
         cls.SESSION = session
         cls.PLATFORM = platform
 
-        if getattr(Config, "PLATFORM") is None:
-            Config.PLATFORM = platform
-
     @classmethod
     def destroy(cls):
         cls.SESSION = None
         cls.PLATFORM = None
-
-        Config.PLATFORM = None
 
     @classmethod
     def get_crawler(cls, name: str):
